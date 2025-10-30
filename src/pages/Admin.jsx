@@ -13,6 +13,8 @@ import {
 
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
 
+const API_BASE = import.meta.env.VITE_API_BASE_URL;
+
 export default function Admin() {
   const [responses, setResponses] = useState([]);
   const [stats, setStats] = useState({});
@@ -28,7 +30,7 @@ export default function Admin() {
     }
 
     // Fetch analytics (protected)
-    fetch("https://localhost:7174/api/analytics", {
+    fetch(`${API_BASE}/api/auth/login`, {
       headers: { Authorization: `Bearer ${token}` }
     })
       .then(res => {
@@ -39,7 +41,7 @@ export default function Admin() {
       .catch(() => navigate("/login"));
 
     // Fetch all responses
-    fetch("https://localhost:7174/api/surveyresponses", {
+    fetch(`${API_BASE}/api/auth/login`, {
       headers: { Authorization: `Bearer ${token}` }
     })
       .then(res => res.json())

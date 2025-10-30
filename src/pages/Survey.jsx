@@ -1,5 +1,5 @@
 import { useState } from "react";
-
+const API_BASE = import.meta.env.VITE_API_BASE_URL;
 export default function Survey() {
   const [name, setName] = useState("");
   const [rating, setRating] = useState(5);
@@ -17,7 +17,7 @@ export default function Survey() {
     };
 
     try {
-      const response = await fetch("https://localhost:7174/api/surveyresponses", {
+      const response = await fetch(`${API_BASE}/api/auth/login`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload)
